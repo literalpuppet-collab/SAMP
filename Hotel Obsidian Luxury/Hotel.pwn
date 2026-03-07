@@ -1,1 +1,137 @@
+#define FILTERSCRIPT
+#include <a_samp>
 
+// ==========================================================
+// Variáveis Globais (Unificadas)
+// ==========================================================
+new Portao1;
+new Portao2;
+new bool:PortaoAberto = false;
+new Text3D:LabelPortao;
+
+// ==========================================================
+// OnFilterScriptInit - Carregamento de Mapas e Objetos
+// ==========================================================
+public OnFilterScriptInit()
+{
+    print("\n--------------------------------------");
+    print(" Filterscript: Mapa + Portão Obsidian ");
+    print("--------------------------------------\n");
+
+    // --- Objetos do Primeiro Código ---
+    new tmpobjid;
+
+    tmpobjid = CreateObject(5430, 2148.951416, -1791.774291, 19.098434, 0.000000, 0.000000, 0.000000, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 18996, "mattextures", "sampblack", 0x00000000);
+    SetObjectMaterial(tmpobjid, 1, 18835, "mickytextures", "brick008", 0x00000000);
+    SetObjectMaterial(tmpobjid, 4, 6867, "vgnpwrmainbld", "sw_wallbrick_02", 0x00000000);
+    SetObjectMaterial(tmpobjid, 5, 18835, "mickytextures", "brick008", 0x00000000);
+    SetObjectMaterial(tmpobjid, 7, 18996, "mattextures", "sampblack", 0x00000000);
+    SetObjectMaterial(tmpobjid, 8, 18835, "mickytextures", "brick008", 0x00000000);
+    SetObjectMaterial(tmpobjid, 9, 3314, "ce_burbhouse", "sw_wallbrick_06", 0x00000000);
+    SetObjectMaterial(tmpobjid, 10, 18996, "mattextures", "sampblack", 0x00000000);
+    SetObjectMaterial(tmpobjid, 11, 14534, "ab_wooziea", "CJ_WOODDOOR5", 0x00000000);
+    SetObjectMaterial(tmpobjid, 12, 18996, "mattextures", "sampblack", 0x00000000);
+    SetObjectMaterial(tmpobjid, 13, 18800, "mroadhelix1", "road1-3", 0x00000000);
+    SetObjectMaterial(tmpobjid, 14, 14534, "ab_wooziea", "CJ_WOODDOOR5", 0x00000000);
+
+    tmpobjid = CreateObject(5676, 2165.846435, -1806.425048, 14.448019, 0.000000, 0.000000, 0.000000, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 18996, "mattextures", "policeshieldgls", 0x00000000);
+
+    tmpobjid = CreateObject(19379, 2175.428710, -1762.355468, 11.423751, 0.000000, 0.000000, -90.099998, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 18996, "mattextures", "sampblack", 0x00000000);
+
+    tmpobjid = CreateObject(3578, 2185.179199, -1762.411499, 11.732606, 0.000000, 0.000000, -0.499999, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 19467, "speed_bumps", "speed_bump01", 0x00000000);
+
+    tmpobjid = CreateObject(19427, 2193.589599, -1762.417114, 12.484928, 88.799995, -89.099975, -1.400000, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 18996, "mattextures", "sampblack", 0x00000000);
+
+    tmpobjid = CreateObject(19427, 2191.817871, -1762.402099, 12.485502, 88.799995, -89.099975, -1.400000, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 18996, "mattextures", "sampblack", 0x00000000);
+
+    tmpobjid = CreateObject(19427, 2191.817871, -1762.369018, 14.095136, 88.799995, -89.099975, -1.400000, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 18996, "mattextures", "sampblack", 0x00000000);
+
+    tmpobjid = CreateObject(19427, 2191.817871, -1762.336059, 15.674781, 88.799995, -89.099975, -1.400000, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 18996, "mattextures", "sampblack", 0x00000000);
+
+    tmpobjid = CreateObject(19427, 2191.817871, -1762.335327, 15.704773, 88.799995, -89.099975, -1.400000, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 18996, "mattextures", "sampblack", 0x00000000);
+
+    tmpobjid = CreateObject(19427, 2193.589599, -1762.385131, 14.024575, 88.799995, -89.099975, -1.400000, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 18996, "mattextures", "sampblack", 0x00000000);
+
+    tmpobjid = CreateObject(19427, 2193.589599, -1762.350097, 15.704201, 88.799995, -89.099975, -1.400000, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 18996, "mattextures", "sampblack", 0x00000000);
+
+    tmpobjid = CreateObject(19327, 2177.572021, -1767.438964, 14.191099, 0.000000, 0.000000, 90.100006, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 7650, "vgnusedcar", "lightblue2_32", 0x00000000);
+
+    tmpobjid = CreateObject(19327, 2177.591796, -1767.077392, 13.881093, 0.000000, 0.000000, 90.100006, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 7650, "vgnusedcar", "lightblue2_32", 0x00000000);
+    SetObjectMaterialText(tmpobjid, "{FFFFFF}Recepção", 0, 140, "Ariel", 93, 1, 0x00000000, 0x00000000, 0);
+
+    tmpobjid = CreateObject(19327, 2177.591796, -1766.997314, 13.691092, 0.000000, 0.000000, 90.100006, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 7650, "vgnusedcar", "lightblue2_32", 0x00000000);
+    SetObjectMaterialText(tmpobjid, "{8A2BE2}Obsidian", 0, 140, "Ariel", 93, 1, 0x00000000, 0x00000000, 0);
+
+    tmpobjid = CreateObject(19327, 2177.591796, -1766.817138, 13.521089, 0.000000, 0.000000, 90.100006, 300.00);
+    SetObjectMaterial(tmpobjid, 0, 7650, "vgnusedcar", "lightblue2_32", 0x00000000);
+    SetObjectMaterialText(tmpobjid, "{0056FF}Luxury", 0, 140, "Ariel", 93, 1, 0x00000000, 0x00000000, 0);
+
+    tmpobjid = CreateObject(7313, 2176.458007, -1762.307617, 14.026871, 0.000000, 0.000000, 179.899871, 300.00);
+    SetObjectMaterial(tmpobjid, 1, 10101, "2notherbuildsfe", "Bow_church_grass_alt", 0x00000000);
+    SetObjectMaterialText(tmpobjid, "{9400D3}Obsidian  {4876FF}Luxury", 0, 120, "Ariel", 60, 1, 0x00000000, 0x00000000, 1);
+
+    CreateObject(8572, 2175.495605, -1827.539550, 16.614952, 0.000000, 0.000000, -90.299949, 300.00);
+
+    // --- Objetos do Segundo Código (Portões e Label) ---
+    Portao1 = CreateObject(989, 2182.761474, -1762.345336, 13.936536, 0.000000, 0.000000, 106.599945, 300.00);
+    Portao2 = CreateObject(989, 2187.445800, -1762.369506, 13.946538, 0.000000, 0.000000, 106.399948, 300.00);
+    LabelPortao = Create3DTextLabel("{9400D3}Obsidian {0056FF}Luxury", 0xFFFFFFFF, 2185.2056, -1760.6041, 13.3750, 25.0, 0, 0);
+
+    return 1;
+}
+
+public OnFilterScriptExit()
+{
+    Delete3DTextLabel(LabelPortao);
+    return 1;
+}
+
+public OnPlayerConnect(playerid)
+{
+    // Remove Buildings do Primeiro Código
+    RemoveBuildingForPlayer(playerid, 5676, 2165.840, -1806.479, 14.437, 0.250);
+    RemoveBuildingForPlayer(playerid, 5430, 2148.949, -1791.839, 19.101, 0.250);
+    RemoveBuildingForPlayer(playerid, 5531, 2148.949, -1791.839, 19.101, 0.250);
+    RemoveBuildingForPlayer(playerid, 1524, 2162.780, -1786.069, 14.187, 0.250);
+    return 1;
+}
+
+public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
+{
+    // Sistema de abertura dos portões (Tecla Y)
+    if (newkeys & KEY_YES)
+    {
+        if (IsPlayerInRangeOfPoint(playerid, 10.0, 2185.2056, -1760.6041, 13.3750))
+        {
+            if (PortaoAberto == false)
+            {
+                MoveObject(Portao1, 2182.761474, -1762.345336, 10.646500, 3.0);
+                MoveObject(Portao2, 2187.445800, -1762.369506, 10.646520, 3.0);
+                GameTextForPlayer(playerid, "~g~Aberto", 3000, 3);
+                PortaoAberto = true;
+            }
+            else
+            {
+                MoveObject(Portao1, 2182.761474, -1762.345336, 13.936536, 3.0);
+                MoveObject(Portao2, 2187.445800, -1762.369506, 13.946538, 3.0);
+                GameTextForPlayer(playerid, "~r~Fechado", 3000, 3);
+                PortaoAberto = false;
+            }
+        }
+    }
+    return 1;
+}
