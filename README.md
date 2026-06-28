@@ -17,7 +17,7 @@ Pawn é a linguagem de programação usada no jogo GTA San Andreas.
 <img width="1366" height="768" alt="sa-mp-0000005" src="https://github.com/user-attachments/assets/51bbdf09-24ed-49a6-b362-147ce373b945" />
 <img width="1366" height="768" alt="sa-mp-0000004" src="https://github.com/user-attachments/assets/50f142a4-7207-47b0-a1a6-60b3174c0f9f" />
 <img width="1115" height="570" alt="e597b120-03bb-4946-ace9-67148709db48" src="https://github.com/user-attachments/assets/dcb4c539-ae83-4f98-ae73-17a8906ee85a" />
-**Posto Idlewood**
+**Posto Idlewood:**
 <img width="1366" height="768" alt="sa-mp-0000014" src="https://github.com/user-attachments/assets/c0e718bb-9667-4aee-995b-ca1f9f3b867b" />
 <img width="1366" height="768" alt="sa-mp-0000016" src="https://github.com/user-attachments/assets/80504b6e-b916-407a-bc21-c5480f728f1e" />
 <img width="1366" height="768" alt="sa-mp-0000015" src="https://github.com/user-attachments/assets/5d309622-305c-46a6-9c8e-a79498cb09f4" />
